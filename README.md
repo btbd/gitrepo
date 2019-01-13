@@ -8,8 +8,8 @@ A simple tool for creating org repositories. It initializes the repo(s) with an 
 
 Options:
 
-- `t` - User API token (required)
-- `a` - Comma separated users to add to the repo(s)
-- `o` - Add users the organization as members in addition to adding them to the repo(s)
-- `r` - Comma separated users to remove from the repo(s)
-- `d` - Description of the repo(s).
+- `t (string)` - User API token (required)
+- `a (string)` - Comma separated users to add to the repo(s)
+- `o (bool)` - Add to users the organization as members in addition to adding them to the repo(s)
+- `r (string)` - Comma separated users to remove from the repo(s)
+- `d (string)` - Description of the repo(s)

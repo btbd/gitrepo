@@ -10,6 +10,6 @@ Options:
 
 - `t (string)` - User API token (required)
 - `a (string)` - Comma separated users to add to the repo(s)
-- `o (bool)` - Add to users the organization as members in addition to adding them to the repo(s)
+- `o (bool)` - Add users to the organization as members in addition to adding them to the repo(s)
 - `r (string)` - Comma separated users to remove from the repo(s)
 - `d (string)` - Description of the repo(s)

@@ -110,8 +110,8 @@ func RemoveMember(auth string, org string, user string) error {
 func main() {
 	repo := Repository{
 		LicenseTemplate: "apache-2.0",
-		Private: false,
-		HasIssues: true,
+		Private:         false,
+		HasIssues:       true,
 	}
 
 	token := ""
@@ -182,49 +182,49 @@ func main() {
 
 		if create {
 			if err := CreateRepository(auth, r[0], repo); err != nil {
-				fmt.Fprintf(os.Stderr, "failed to create repo \"%s\": %v\n", name, err)
+				fmt.Fprintf(os.Stderr, "failed to create repo %q: %v\n", name, err)
 				os.Exit(1)
 			}
 
-			fmt.Printf("\"%s\" created\n", name)
+			fmt.Printf("%q created\n", name)
 		} else {
 			if err := EditRepository(auth, r[0], r[1], repo); err != nil {
-				fmt.Fprintf(os.Stderr, "failed to edit repo \"%s\": %v\n", name, err)
+				fmt.Fprintf(os.Stderr, "failed to edit repo %q: %v\n", name, err)
 				os.Exit(1)
 			}
 
-			fmt.Printf("\"%s\" edited\n", name)
+			fmt.Printf("%q edited\n", name)
 		}
 
 		for _, u := range add_users {
 			if err := AddCollaborator(auth, r[0], r[1], u); err != nil {
-				fmt.Fprintf(os.Stderr, "failed to add user \"%s\" to \"%s\": %v\n", u, name, err)
+				fmt.Fprintf(os.Stderr, "failed to add user %q to %q: %v\n", u, name, err)
 				os.Exit(1)
 			}
 
-			fmt.Printf("- added \"%s\" to \"%s\"\n", u, name)
+			fmt.Printf("- added %q to %q\n", u, name)
 
 			if org {
 				if err := QRequest(auth, "GET", API+"/orgs/"+r[0]+"/members/"+u, nil); err == nil {
-					fmt.Printf("\"%s\" is already a member of \"%s\"\n", u, r[0])
+					fmt.Printf("- %q is already a member of %q\n", u, r[0])
 				} else {
 					if err := AddMember(auth, r[0], u); err != nil {
-						fmt.Fprintf(os.Stderr, "failed to add member \"%s\" to org \"%s\": %v\n", u, r[0], err)
+						fmt.Fprintf(os.Stderr, "failed to add member %q to org %q: %v\n", u, r[0], err)
 						os.Exit(1)
 					}
 
-					fmt.Printf("- added \"%s\" to \"%s\"\n", u, r[0])
+					fmt.Printf("- added %q to %q\n", u, r[0])
 				}
 			}
 		}
 
 		for _, u := range rm_users {
 			if err := RemoveCollaborator(auth, r[0], r[1], u); err != nil {
-				fmt.Fprintf(os.Stderr, "failed to remove user \"%s\" to \"%s\": %v\n", u, name, err)
+				fmt.Fprintf(os.Stderr, "failed to remove user %q to %q: %v\n", u, name, err)
 				os.Exit(1)
 			}
 
-			fmt.Printf("- removed \"%s\" from \"%s\"\n", u, name)
+			fmt.Printf("- removed %q from %q\n", u, name)
 		}
 	}
 }

@@ -227,4 +227,11 @@ func main() {
 			fmt.Printf("- removed %q from %q\n", u, name)
 		}
 	}
+
+	fmt.Printf("***: \n")
+	for _, r := range repos {
+		fmt.Printf("Created: https://github.com/%s/%s \n", r[0], r[1])
+		fmt.Printf("Accept invitations: https://github.com/%s/%s/invitations \n", r[0], r[1])
+	}
+
 }
